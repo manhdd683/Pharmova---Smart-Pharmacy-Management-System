@@ -19,15 +19,18 @@ const CustomerProfilePage: React.FC = () => {
     fetchRealData();
   }, []);
 
+  // LẤY DỮ LIỆU NGƯỜI DÙNG (ĐÃ FIX LỖI AXIOS .DATA)
   const fetchRealData = async () => {
     setLoading(true);
     try {
-      const userRes = await customerService.getProfile();
+      const profileRes: any = await customerService.getProfile();
+      const userRes = profileRes?.data || profileRes;
       let finalData = { ...userRes };
 
-      if (userRes && userRes.phoneNumber) {
+      if (userRes && (userRes.phoneNumber || userRes.phone)) {
         try {
-          const customerRes = await customerService.getCustomerByPhone(userRes.phoneNumber);
+          const custRes: any = await customerService.getCustomerByPhone(userRes.phoneNumber || userRes.phone);
+          const customerRes = custRes?.data || custRes;
           if (customerRes) finalData = { ...finalData, ...customerRes };
         } catch (error) { }
       }
@@ -43,10 +46,10 @@ const CustomerProfilePage: React.FC = () => {
         email: finalData.email || '' 
       });
 
-      // --- ĐÃ FIX: Gọi thẳng API my-orders để lấy chính xác lịch sử ---
+      // Lấy lịch sử đơn hàng
       try {
         const ordersRes: any = await axiosClient.get('/api/orders/my-orders');
-        const myOrders = ordersRes.data || ordersRes;
+        const myOrders = ordersRes?.data || ordersRes;
         setOrderHistory(Array.isArray(myOrders) ? myOrders : []);
       } catch (err) { 
         setOrderHistory([]); 

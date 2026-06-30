@@ -64,7 +64,7 @@ const POSPage: React.FC = () => {
   const discountAmount = pointsUsed * 1000;
   const finalAmount = totalAmount - discountAmount;
 
-  // QUẢN LÝ KHÁCH HÀNG
+  // QUẢN LÝ KHÁCH HÀNG (ĐÃ FIX LỖI AXIOS BÓC VỎ .DATA)
   const handleSearchCustomer = async (phone: string) => {
     setSearchPhone(phone);
     if (phone.length >= 10) {
@@ -75,13 +75,16 @@ const POSPage: React.FC = () => {
           setSelectedCustomer(localMatch);
           setUsePoints(false);
         } else {
-          const remoteUser = await customerService.searchUserByPhone(phone);
+          // Bóc vỏ .data ở đây để TypeScript và React hiểu
+          const res: any = await customerService.searchUserByPhone(phone);
+          const remoteUser = res?.data || res;
+          
           if (remoteUser && remoteUser.fullName) {
             setSelectedCustomer({
               ...remoteUser,
-              phone: remoteUser.phoneNumber, 
-              rewardPoints: 0,
-              membershipTier: 'Thành viên mới'
+              phone: remoteUser.phoneNumber || remoteUser.phone, 
+              rewardPoints: remoteUser.rewardPoints || 0,
+              membershipTier: remoteUser.membershipTier || 'Thành viên mới'
             });
             setUsePoints(false);
           } else {
@@ -294,10 +297,8 @@ const POSPage: React.FC = () => {
       {receiptData && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
           
-          {/* ĐÃ FIX: Thêm maxHeight: '90vh' và overflowY: 'auto' để chống tràn màn hình */}
           <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', width: '400px', maxHeight: '90vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '20px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
             
-            {/* ĐÃ FIX: Rút gọn thông báo và bỏ icon */}
             <div className="no-print" style={{ backgroundColor: '#d1fae5', border: '1px solid #10b981', color: '#047857', padding: '12px', borderRadius: '8px', textAlign: 'center', fontWeight: 'bold', fontSize: '15px' }}>
                 Thanh toán thành công
             </div>

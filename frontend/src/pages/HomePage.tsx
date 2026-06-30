@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DollarSign, ShoppingBag, AlertTriangle, Users, Package, AlertCircle, Clock, TrendingUp } from 'lucide-react';
+import { ShoppingBag, AlertTriangle, Users, Package, AlertCircle, Clock, TrendingUp } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import axiosClient from '../services/axiosClient';
 
@@ -157,7 +157,7 @@ const HomePage: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
                   <XAxis dataKey="name" tick={{fontSize: 11, fill: '#6b7280'}} axisLine={{ stroke: '#e5e7eb' }} tickLine={false} dy={10} />
                   <YAxis tick={{fontSize: 11, fill: '#6b7280'}} axisLine={false} tickLine={false} tickFormatter={(value) => `${(value / 1000).toLocaleString()}k`} dx={-5} />
-                  <Tooltip formatter={(value: number) => [`${value.toLocaleString()} ₫`, 'Doanh thu']} />
+                  <Tooltip formatter={(value: any) => [`${value.toLocaleString()} ₫`, 'Doanh thu']} />
                   <Line type="monotone" dataKey="DoanhThu" stroke="#10b981" strokeWidth={3} dot={{ r: 4, fill: '#10b981', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 6 }} />
                 </LineChart>
               </ResponsiveContainer>

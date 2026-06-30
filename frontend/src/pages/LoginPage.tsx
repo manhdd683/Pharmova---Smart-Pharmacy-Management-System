@@ -64,7 +64,7 @@ const LoginPage: React.FC = () => {
     setForgotMessage({ type: '', text: '' });
     try {
       const res: any = await axiosClient.post('/api/auth/forgot-password', { email: forgotEmail });
-      setForgotMessage({ type: 'success', text: res.message || 'Mã OTP đã được gửi!' });
+      setForgotMessage({ type: 'success', text: res?.message || 'Mã OTP đã được gửi!' });
       setForgotStep(2); // Chuyển sang bước nhập OTP
     } catch (err: any) {
       setForgotMessage({ type: 'error', text: err.response?.data?.message || 'Email không tồn tại!' });
@@ -81,7 +81,8 @@ const LoginPage: React.FC = () => {
     }
 
     try {
-      const res: any = await axiosClient.post('/api/auth/reset-password', { 
+      // ĐÃ SỬA LỖI CÚ PHÁP TẠI ĐÂY (Chỉ gọi await, không gán const : any)
+      await axiosClient.post('/api/auth/reset-password', { 
         email: forgotEmail, 
         otp, 
         newPassword 

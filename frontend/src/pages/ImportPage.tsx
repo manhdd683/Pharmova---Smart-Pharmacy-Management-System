@@ -14,7 +14,7 @@ const ImportPage: React.FC = () => {
   // State thông tin phiếu nhập
   const [supplier, setSupplier] = useState('');
   const [deliverer, setDeliverer] = useState('');
-  const [importer, setImporter] = useState('Admin');
+  const [importer] = useState('Admin');
   const [importDate, setImportDate] = useState(new Date().toISOString().split('T')[0]);
 
   // State in ấn và File Excel

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Clock, User, Database, Activity } from 'lucide-react';
+import { Search, Clock, User, Database} from 'lucide-react';
 import axiosClient from '../services/axiosClient';
 
 const AuditLogPage: React.FC = () => {

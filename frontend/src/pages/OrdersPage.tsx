@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Eye, X, FileText, ShoppingCart } from 'lucide-react';
+import { Search, Eye, X,  ShoppingCart } from 'lucide-react';
 import axiosClient from '../services/axiosClient';
 
 const OrdersPage: React.FC = () => {
