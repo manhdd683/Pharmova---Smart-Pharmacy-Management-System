@@ -1,0 +1,115 @@
+/* src/layouts/MainLayout.css */
+.layout-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f3f4f6; /* Màu nền xám nhạt */
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Cột Sidebar bên trái */
+.sidebar {
+  width: 260px;
+  background-color: #111827; /* Xanh đen */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.sidebar-logo {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #1f2937;
+  gap: 12px;
+}
+
+.sidebar-logo-icon {
+  color: #10b981; /* Xanh ngọc */
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  color: #9ca3af;
+  text-decoration: none;
+  gap: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.menu-item:hover {
+  color: white;
+  background-color: #1f2937;
+}
+
+/* Hiệu ứng khi đang ở trang đó (Active) */
+.menu-item.active {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border-left-color: #10b981;
+}
+
+/* Phần nội dung bên phải */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Thanh Header trên cùng */
+.topbar {
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 8px 16px;
+  border-radius: 8px;
+  width: 400px;
+  gap: 8px;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: #374151;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Khu vực hiển thị ruột của từng trang */
+.page-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
