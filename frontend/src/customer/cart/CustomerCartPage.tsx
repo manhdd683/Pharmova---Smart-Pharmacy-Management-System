@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Trash2, Plus, Minus, ShieldCheck, AlertCircle, Truck, Store, MapPin, Award, Banknote, CreditCard, Tag } from 'lucide-react';
+import { Trash2, Plus, Minus, ShieldCheck,  Truck, Store,  Banknote, CreditCard, Tag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axiosClient from '../../services/axiosClient';
 
